@@ -18,6 +18,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 // 86acbd31cd7c09cf30acb66d2fbedc91daa48b86:1520519611.05
@@ -39,8 +43,27 @@ v.src=c,v.async=!0,v.id="_uasdk",v.rel=e,t.head.appendChild(v)}(window,document,
 
     test
     <button id="register">Sign up for notifications</button>
+    <br><br>
+    <input placeholder="channelID" id="channel">
+    <br><br>
+    <button id="sendChannel">Send channelID</button>
 <script>
-   document.getElementById('register').addEventListener('click', function(){
+  $(document).ready(function(){
+
+    $('#sendChannel').on('click', function(){
+      $.ajax({
+        url:'/channel/'+$('#channel').val(),
+        method: 'POST',
+        success: function() {
+          console.log('channel sent')
+        },
+        error: function() {
+          console.log('error sending channel!!!!')
+        }
+      })
+    })
+
+    document.getElementById('register').addEventListener('click', function(){
      console.log('registering')
      UA.then(function(sdk) {
       sdk.register()
@@ -53,9 +76,11 @@ v.src=c,v.async=!0,v.id="_uasdk",v.rel=e,t.head.appendChild(v)}(window,document,
    UA.then(function(sdk) {
       sdk.addEventListener('channel', function(ev) {
         console.log('channel ** ', ev.channel)
+        $('#channel').val(ev.channel.channel_id)
         ev.channel === sdk.channel
       })
     })
+  })
 </script>
 
 </body>
