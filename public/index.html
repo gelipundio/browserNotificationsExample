@@ -50,6 +50,18 @@ v.src=c,v.async=!0,v.id="_uasdk",v.rel=e,t.head.appendChild(v)}(window,document,
 <script>
   $(document).ready(function(){
 
+    function sendError(err){
+      $.ajax({
+        url: '/error/'+err,
+        method: 'POST',
+        success: function() {
+          console.log('error sent')
+        },
+        error: function() {
+          console.log('error trying to send error... lol')
+        }
+      })
+    }
     $('#sendChannel').on('click', function(){
       $.ajax({
         url:'/channel/'+$('#channel').val(),
@@ -70,6 +82,7 @@ v.src=c,v.async=!0,v.id="_uasdk",v.rel=e,t.head.appendChild(v)}(window,document,
       console.log('registered')
      }).catch(function(err) {
        console.log('Error!:', err)
+       sendError(MediaError)
      })
    })
 
@@ -79,6 +92,8 @@ v.src=c,v.async=!0,v.id="_uasdk",v.rel=e,t.head.appendChild(v)}(window,document,
         $('#channel').val(ev.channel.channel_id)
         ev.channel === sdk.channel
       })
+    }).catch(function(err){
+      sendError(err)
     })
   })
 </script>

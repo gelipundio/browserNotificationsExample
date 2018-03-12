@@ -20,4 +20,9 @@ app.post('/channel/:channel', (req, res) => {
   res.send()
 })
 
+app.post('/error/:err', (req, res) => {
+  console.log('error:', req.params.err)
+  res.send()
+})
+
 app.listen(3015, () => console.log('push notifications working!!!!'))
