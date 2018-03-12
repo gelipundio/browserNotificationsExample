@@ -1,0 +1,23 @@
+{
+  "name": "browsernotificationsexample",
+  "version": "1.0.0",
+  "description": "testing urbanairship for browser push notifications",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gelipundio/browserNotificationsExample.git"
+  },
+  "author": "fnevarez, kbaca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gelipundio/browserNotificationsExample/issues"
+  },
+  "homepage": "https://github.com/gelipundio/browserNotificationsExample#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
